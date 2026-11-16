@@ -18,5 +18,10 @@
     "repository": "MiCode/vendor_qcom_proprietary_display-devicetree",
     "target_path": "kernel/xiaomi/houji-modules/display-devicetree",
     "branch": "shennong-u-oss"
+  },
+  {
+    "repository": "MiCode/vendor_opensource_display-drivers",
+    "target_path": "kernel/xiaomi/houji-modules/display",
+    "branch": "shennong-u-oss"
   }
 ]

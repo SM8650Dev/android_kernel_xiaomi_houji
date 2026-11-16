@@ -99,3 +99,14 @@ and applying its own overlays does not establish compatibility with that newer
 vendor ABI, firmware or hardware configuration. Product kernel packaging,
 complete ROM construction and real-device boot remain unverified. These output
 files alone are not a validated flashable release.
+
+## Official external display source
+
+`lineage.dependencies` also fetches
+`MiCode/vendor_opensource_display-drivers` at `shennong-u-oss` into
+`kernel/xiaomi/houji-modules/display`. Its upstream release commit is
+`abe499b28a74c723bdf619e07add6923d8e3aec8`, explicitly for Xiaomi 14/14 Pro
+Android U and based on `KERNEL.PLATFORM.3.0.r1-03200-kernel.0-1`.
+This is driver source, separate from the display device-tree repository.
+It still needs external MMRM, hardware-fence and secure-display dependencies
+before the functional display module can be integrated.
