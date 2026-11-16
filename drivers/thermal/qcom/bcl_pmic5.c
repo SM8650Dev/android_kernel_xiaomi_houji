@@ -617,7 +617,7 @@ static int bcl_get_ibat_ext_range_factor(struct platform_device *pdev,
 	}
 
 	if (len <= 0 || len > sizeof(uint32_t)) {
-		dev_err(&pdev->dev, "nvmem cell length out of range %d\n", len);
+		dev_err(&pdev->dev, "nvmem cell length out of range %zu\n", len);
 		kfree(buf);
 		return -EINVAL;
 	}
