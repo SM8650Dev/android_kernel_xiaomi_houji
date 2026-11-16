@@ -291,8 +291,8 @@ static int spmi_glink_read_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid,
 	if (ret < 0)
 		return ret;
 
-	dev_dbg(spmi_gctrl->gd->dev, "%s: bus id %#x, sid %#x, reg %#x, data %*ph, len =%d\n",
-			__func__, spmi_gctrl->bus_id, sid, addr, len, buf, len);
+	dev_dbg(spmi_gctrl->gd->dev, "%s: bus id %#x, sid %#x, reg %#x, data %*ph, len =%zu\n",
+			__func__, spmi_gctrl->bus_id, sid, addr, (int)min_t(size_t, len, 64), buf, len);
 	return 0;
 }
 
@@ -307,8 +307,8 @@ static int spmi_glink_write_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid,
 	if (ret < 0)
 		return ret;
 
-	dev_dbg(spmi_gctrl->gd->dev, "%s: bus id %#x, sid %#x, reg %#x, data %*ph, len =%d\n",
-			__func__, spmi_gctrl->bus_id, sid, addr, len, buf, len);
+	dev_dbg(spmi_gctrl->gd->dev, "%s: bus id %#x, sid %#x, reg %#x, data %*ph, len =%zu\n",
+			__func__, spmi_gctrl->bus_id, sid, addr, (int)min_t(size_t, len, 64), buf, len);
 	return 0;
 }
 
@@ -359,8 +359,8 @@ static int i2c_glink_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int n
 		return ret;
 	}
 
-	dev_dbg(gd->dev, "%s: %s:  bus id %#x, sid %#x, reg %#x, data %*ph, len =%d\n",
-			__func__, read ? "read" : "write", bus_id, sid, reg, len, buf, len);
+	dev_dbg(gd->dev, "%s: %s:  bus id %#x, sid %#x, reg %#x, data %*ph, len =%zu\n",
+			__func__, read ? "read" : "write", bus_id, sid, reg, (int)min_t(size_t, len, 64), buf, len);
 	return num;
 }
 
