@@ -1376,7 +1376,7 @@ static int battery_chg_callback(void *priv, void *data, size_t len)
 
 	if (!bcdev->initialized) {
 		pr_debug("Driver initialization failed: Dropping glink callback message: state %d\n",
-			 bcdev->state);
+			 atomic_read(&bcdev->state));
 		up_read(&bcdev->state_sem);
 		return 0;
 	}
@@ -5113,7 +5113,7 @@ static ssize_t request_vdm_cmd_show(struct class *c,
 			return rc;
 		for (i = 0; i < USBPD_UVDM_SS_LEN; i++) {
 			memset(data, 0, sizeof(data));
-			snprintf(data, sizeof(data), "%08lx", bcdev->ss_auth_data[i]);
+			snprintf(data, sizeof(data), "%08x", bcdev->ss_auth_data[i]);
 			strlcat(str_buf, data, sizeof(str_buf));
 		}
 		return snprintf(buf, PAGE_SIZE, "%d,%s", cmd, str_buf);
