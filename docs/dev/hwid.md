@@ -38,8 +38,11 @@ target pass. CONFIG_MI_HARDWARE_ID=m and CONFIG_QCOM_SOCINFO=m remain enabled.
 The compiled hwid.o exports the same nine function names as the stock module.
 The USB DWC3 controller and eUSB2 repeater objects that include hwid.h also compile.
 
-The full Image/modules build currently stops on pre-existing -Werror=format
-errors in WALT, Gunyah, MHI, irqchip and QRTR code. Direct consumer compilation
-also finds existing format errors in wcd939x-i2c.c. A loadable hwid.ko and
-real-device behavior are not yet verified; no symbol-version or binary-module
-compatibility is inferred from matching export names alone.
+The existing format errors in WALT, Gunyah, MHI, irqchip, QRTR and other
+Qualcomm drivers have been fixed in separate commits. The full Image/modules
+build and modules_install now pass with CONFIG_WERROR=y, producing an AArch64
+hwid.ko with all nine expected exports. The wcd939x-i2c consumer also compiles.
+See build.md for the configuration, artifacts and remaining bringup limits.
+
+The module has not been loaded on a device. Matching export names alone does
+not establish symbol-version or binary-module compatibility with stock firmware.
