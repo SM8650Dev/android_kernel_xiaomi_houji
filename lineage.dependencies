@@ -3,5 +3,20 @@
     "repository": "MiCode/kernel_devicetree",
     "target_path": "kernel/xiaomi/houji-devicetrees",
     "branch": "shennong-u-oss"
+  },
+  {
+    "repository": "MiCode/vendor_qcom_opensource_camera-kernel",
+    "target_path": "kernel/xiaomi/houji-modules/camera",
+    "branch": "shennong-u-oss"
+  },
+  {
+    "repository": "MiCode/vendor_qcom_opensource_wlan",
+    "target_path": "kernel/xiaomi/houji-modules/wlan",
+    "branch": "shennong-u-oss"
+  },
+  {
+    "repository": "MiCode/vendor_qcom_proprietary_display-devicetree",
+    "target_path": "kernel/xiaomi/houji-modules/display-devicetree",
+    "branch": "shennong-u-oss"
   }
 ]
