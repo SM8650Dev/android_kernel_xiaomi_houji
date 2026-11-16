@@ -71,5 +71,10 @@
     "remote": "houji-clo-mirror",
     "target_path": "kernel/xiaomi/houji-modules/dsp-kernel",
     "branch": "a976ff28ccb56d1b227a857a7cf5f92cd60985f2"
+  },
+  {
+    "repository": "MiCode/vendor_qcom_proprietary_camera-devicetree",
+    "target_path": "kernel/xiaomi/houji-modules/camera-devicetree",
+    "branch": "c07bd5b2c17c003829b8b04d776ee28d66bbdad1"
   }
 ]

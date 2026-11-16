@@ -90,3 +90,25 @@ device/xiaomi/houji/docs/dev/camera-dsp-modules.md.
 The mirror pin identifies the upstream input; local camera and DSP fixes
 must be published to maintained forks, with manifest/dependency revisions
 updated, before a new checkout can reproduce the patched build.
+
+## Houji camera device trees
+
+MiCode's camera-devicetree repository has no shennong-u-oss branch. Its
+aurora-u-oss revision c07bd5b2c17c003829b8b04d776ee28d66bbdad1 contains the
+actual houji-sm8650-camera-sensor.dtsi as well as common Pineapple and v2
+camera descriptions. The device-tree integration uses those houji files,
+not aurora sensor wiring. The camera driver's dt-bindings supply the matching
+camera constants; the sensor description explicitly includes RPMH level
+definitions.
+
+The core DT repository links this external source at qcom/camera and includes
+common camera nodes in the Pineapple/PineappleP bases and houji sensor nodes
+in the houji overlay. Both product overlays apply successfully. Across 47
+active camera nodes, 917 compared properties match the corresponding stock
+MIXM DT variants after provider phandle normalization; v1/v2 differ only in
+the expected IPE clock-rate table when compared across variants. This checks
+DT descriptions, not camera HAL or hardware operation.
+
+The dependency pin records the public MiCode input. The local header fix and
+core DT integration must also be published to forks and pinned before a new
+sync reproduces the patched build.
