@@ -47,5 +47,23 @@
     "remote": "houji-clo",
     "target_path": "kernel/xiaomi/houji-modules/datarmnet-ext",
     "branch": "24380abaae2422e1cf0b2b22a85263459f2fedc3"
+  },
+  {
+    "repository": "la_platform_vendor_opensource_mm-drivers",
+    "remote": "houji-clo-mirror",
+    "target_path": "kernel/xiaomi/houji-modules/mm-drivers",
+    "branch": "129a3797e8dd1163aa49809b26355c8bb0573584"
+  },
+  {
+    "repository": "la_platform_vendor_opensource_mmrm-driver",
+    "remote": "houji-clo-mirror",
+    "target_path": "kernel/xiaomi/houji-modules/mmrm-driver",
+    "branch": "0ecad902add56e93e083c1a4acab37b05b14c508"
+  },
+  {
+    "repository": "la_platform_vendor_opensource_synx-kernel",
+    "remote": "houji-clo-mirror",
+    "target_path": "kernel/xiaomi/houji-modules/synx-kernel",
+    "branch": "d5bed2898aa514562a4fb6a5a0ae2732833a54f9"
   }
 ]

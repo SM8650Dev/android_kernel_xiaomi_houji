@@ -37,3 +37,34 @@ control, memory and extension drivers omitted from the MiCode core tree.
 
 Local fixes remain on the porting branches and must be published with the
 other driver fixes before these upstream input pins can reproduce a build.
+
+## Multimedia and synchronization porting inputs
+
+The next source adapters use the public CodeLinaro GitHub mirror,
+https://github.com/CodeLinaro-mirror/. The upstream release branches have
+continued changing through 2026, so these inputs are pinned to historical
+commits from the Android 14 / Pineapple development period rather than their
+current heads. They are porting baselines, not exact matches to the MIXM ROM.
+
+| Mirror repository | Upstream revision | Commit date |
+| --- | --- | --- |
+| la_platform_vendor_opensource_mm-drivers | 129a3797e8dd1163aa49809b26355c8bb0573584 | 2023-06-27 |
+| la_platform_vendor_opensource_mmrm-driver | 0ecad902add56e93e083c1a4acab37b05b14c508 | 2023-01-13 |
+| la_platform_vendor_opensource_synx-kernel | d5bed2898aa514562a4fb6a5a0ae2732833a54f9 | 2023-12-20 |
+
+mm-drivers supplies actual hardware fence, software sync fence and external
+display implementations; mmrm-driver supplies the clock resource manager.
+synx-kernel supplies Synx and IPCLite. Adapters select Pineapple and pass real
+upstream Module.symvers files. Display continues to use the MiCode shennong
+implementation and securemsm's actual HDCP interface.
+
+The houji-clo-mirror remote is defined in the device's docs/dev/houji.xml
+local manifest. Dependency revisions above identify upstream inputs; the
+local strict-compiler and diagnostic fixes on houji-port are not published.
+As with the earlier networking drivers, publish the local port branches to
+maintained forks and update both manifest and dependency pins before claiming
+that a fresh upstream-only sync reproduces these builds.
+
+Selected stock miev and NFC fallbacks and their validation are described in
+device/xiaomi/houji/docs/dev/prebuilt-modules.md. They do not change the
+source-built kernel Image or permit arbitrary stock modules.
