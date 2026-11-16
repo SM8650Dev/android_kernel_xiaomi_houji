@@ -35,5 +35,17 @@
     "remote": "houji-clo",
     "target_path": "kernel/xiaomi/houji-modules/dataipa",
     "branch": "723906905cbf3e7a59ec8924e9d4bbe81e72097c"
+  },
+  {
+    "repository": "platform/vendor/qcom/opensource/datarmnet",
+    "remote": "houji-clo",
+    "target_path": "kernel/xiaomi/houji-modules/datarmnet",
+    "branch": "0f7747af0bd8e8f0603c726ffa0e330f927e1602"
+  },
+  {
+    "repository": "platform/vendor/qcom/opensource/datarmnet-ext",
+    "remote": "houji-clo",
+    "target_path": "kernel/xiaomi/houji-modules/datarmnet-ext",
+    "branch": "24380abaae2422e1cf0b2b22a85263459f2fedc3"
   }
 ]

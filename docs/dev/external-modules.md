@@ -23,3 +23,17 @@ Local fixes are committed on `houji-port` in each added repository. The
 manifest pins upstream inputs; it does not contain unpublished local fixes.
 Before sharing a build checkout, publish those commits to maintained forks
 and update the manifest/dependency revisions to those forks together.
+
+## RMNET porting inputs
+
+The source-build adapters additionally use the following pinned Qualcomm
+repositories under the same CodeLinaro remote. These supply RMNET core,
+control, memory and extension drivers omitted from the MiCode core tree.
+
+| Repository | Upstream revision | Local directory |
+| --- | --- | --- |
+| `platform/vendor/qcom/opensource/datarmnet` | `0f7747af0bd8e8f0603c726ffa0e330f927e1602` | `kernel/xiaomi/houji-modules/datarmnet` |
+| `platform/vendor/qcom/opensource/datarmnet-ext` | `24380abaae2422e1cf0b2b22a85263459f2fedc3` | `kernel/xiaomi/houji-modules/datarmnet-ext` |
+
+Local fixes remain on the porting branches and must be published with the
+other driver fixes before these upstream input pins can reproduce a build.
