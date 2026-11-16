@@ -584,7 +584,7 @@ static void msm_geni_enable_disable_se_clk(struct uart_port *uport, bool enable)
 	struct msm_geni_serial_port *msm_port = GET_DEV_PORT(uport);
 
 	UART_LOG_DBG(msm_port->ipc_log_misc, msm_port->uport.dev,
-		"%s: enable:%d ser_clk_cfg:0x%x\n", __func__, enable,
+		"%s: enable:%d ser_clk_cfg:0x%lx\n", __func__, enable,
 		msm_port->ser_clk_cfg);
 
 	if (enable) {
@@ -3746,7 +3746,7 @@ static void msm_geni_serial_set_termios(struct uart_port *uport,
 	clk_freq_diff =  (desired_rate - (clk_rate / clk_div));
 	if (clk_freq_diff)
 		UART_LOG_DBG(port->ipc_log_misc, uport->dev,
-			"%s src_clk freq_diff:%d baud:%d clk_rate:%d clk_div:%d\n",
+			"%s src_clk freq_diff:%d baud:%d clk_rate:%lu clk_div:%d\n",
 			__func__, clk_freq_diff, baud, clk_rate, clk_div);
 
 	uport->uartclk = clk_rate;
@@ -3766,7 +3766,7 @@ static void msm_geni_serial_set_termios(struct uart_port *uport,
 	msm_geni_enable_disable_se_clk(uport, true);
 
 	msm_geni_serial_termios_cfg(uport, termios, clk_div);
-	UART_LOG_DBG(port->ipc_log_misc, uport->dev, "%s: baud %d ser_clk_cfg:0x%x\n",
+	UART_LOG_DBG(port->ipc_log_misc, uport->dev, "%s: baud %d ser_clk_cfg:0x%lx\n",
 			__func__, baud, port->ser_clk_cfg);
 exit_set_termios:
 	msm_geni_serial_start_rx(uport);
