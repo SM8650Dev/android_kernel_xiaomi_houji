@@ -65,5 +65,11 @@
     "remote": "houji-clo-mirror",
     "target_path": "kernel/xiaomi/houji-modules/synx-kernel",
     "branch": "d5bed2898aa514562a4fb6a5a0ae2732833a54f9"
+  },
+  {
+    "repository": "la_platform_vendor_qcom_opensource_dsp-kernel",
+    "remote": "houji-clo-mirror",
+    "target_path": "kernel/xiaomi/houji-modules/dsp-kernel",
+    "branch": "a976ff28ccb56d1b227a857a7cf5f92cd60985f2"
   }
 ]

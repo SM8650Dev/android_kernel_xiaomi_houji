@@ -68,3 +68,25 @@ that a fresh upstream-only sync reproduces these builds.
 Selected stock miev and NFC fallbacks and their validation are described in
 device/xiaomi/houji/docs/dev/prebuilt-modules.md. They do not change the
 source-built kernel Image or permit arbitrary stock modules.
+
+## Camera and DSP source integration
+
+Camera and cameralog continue to use MiCode's
+vendor_qcom_opensource_camera-kernel shennong-u-oss source already listed
+in lineage.dependencies. The camera adapter selects the supplied Pineapple
+configuration, Synx vendor implementation, MMRM, secure camera and SMMU proxy.
+It uses actual upstream symbol tables and generates the original build header.
+
+FastRPC and CDSP loader use the GitHub mirror
+CodeLinaro-mirror/la_platform_vendor_qcom_opensource_dsp-kernel at
+a976ff28ccb56d1b227a857a7cf5f92cd60985f2 (2023-12-18).
+This historical Pineapple-capable input supplies frpc-adsprpc and cdsp-loader.
+It is a porting baseline, not proof of equivalence to MIXM HAL/firmware.
+The adapter selects CONFIG_ARCH_PINEAPPLE and the supplied DSP profile header.
+Trace include paths and strict diagnostic fixes are separate local port commits.
+
+The device adapters and verification boundaries are described in
+device/xiaomi/houji/docs/dev/camera-dsp-modules.md.
+The mirror pin identifies the upstream input; local camera and DSP fixes
+must be published to maintained forks, with manifest/dependency revisions
+updated, before a new checkout can reproduce the patched build.
