@@ -82,17 +82,23 @@ artifacts and are not committed.
 
 ## Remaining system integration
 
-The current stock-derived load lists name 164 distinct modules that are not
-emitted by this configuration. Per-list counts overlap: boot 19, recovery 61,
+The initial standalone build left 164 distinct stock load-list modules
+unbuilt. Per-list counts overlap: boot 19, recovery 61,
 system 2, vendor 143. The local audit is out/houji-kernel-module-gaps.json.
 These counts compare filenames; they do not prove that every associated
 function is absent. Some functions may be built in or selected by another
 configuration, while others require external sources and porting.
 
-Camera, WLAN and display DTS checkouts declared as dependencies remain porting
-inputs; this validation does not build or integrate the complete external
-camera, display, audio, GPU and connectivity module stack. Keep missing-module
-checks enabled and audit each stock load entry before changing the lists.
+The initial standalone validation did not include the complete external
+module stack. Subsequent device wrappers now build securemsm, CNSS2 and its
+common WLAN modules, IPA/GSI, RMNET core and extensions, and Kiwi v2 WLAN.
+The product build through kernel commit 6f40e13d84ee installed 374 source
+modules into its release directory; vendor load-list gaps fell to 107, with
+126 unique gaps across all load lists. Remaining gaps still stop product
+kernel packaging. See device/xiaomi/houji/docs/dev/bringup.md for the
+module counts, wrapper order and actual product validation results.
+Camera, display, audio, GPU and other external drivers still require porting.
+Keep missing-module checks enabled and audit each stock load entry before changing the lists.
 
 Stock OS3.0.305.0.WNCMIXM uses a 6.1.157 kernel. Building this 6.1.25 release
 and applying its own overlays does not establish compatibility with that newer
