@@ -1304,17 +1304,17 @@ static ssize_t get_penalty_debug(struct kobject *kobj,
 	"total_win=%lu total_penalty_win=%lu total_low=%lu total_very_low=%lu  \n",
 	total_win_, total_penalty_win, total_low, total_very_low );
 	i += scnprintf(buf+i, PAGE_SIZE,
-	"percent:  total_penalty_win=%lu  total_low=%lu total_very_low=%lu \n",
+	"percent:  total_penalty_win=%llu  total_low=%llu total_very_low=%llu \n",
 	div64_u64(total_penalty_win*100, total_win_),
 	div64_u64(total_low*100, total_win_),
 	div64_u64(total_very_low*100, total_win_));
-	i += scnprintf(buf+i, PAGE_SIZE, "_yield_total=%luus cnt=%lu avg=%luus per=%lu\n", div64_u64(yield_ns_total_,1000),
+	i += scnprintf(buf+i, PAGE_SIZE, "_yield_total=%lluus cnt=%lu avg=%lluus per=%llu\n", div64_u64(yield_ns_total_,1000),
 		yield_cnt_total_, div64_u64(yield_ns_total_,yield_cnt_total_*1000), div64_u64(yield_ns_total_,50000000UL) );
 	i += scnprintf(buf+i, PAGE_SIZE,
-	"target_fps=%d: fast_thresh=%lu slow_thresh=%lu  max_frame=%lu \n",
+	"target_fps=%llu: fast_thresh=%llu slow_thresh=%llu  max_frame=%d \n",
 			 target_fps, fast_thresh, slow_thresh, max_frame);
 	i += scnprintf(buf+i, PAGE_SIZE,
-	"ut_scale=%lu ur_sc=%lu penalty_pl=%lu  penalty_per_task=%lu \n",
+	"ut_scale=%d ur_sc=%d penalty_pl=%d  penalty_per_task=%d \n",
 	 atomic_read(&scale_min_percpu),  atomic_read(&scale_min_pertask),
 	 penalty_pl, sleep_penalty_per_task);
 
@@ -1447,7 +1447,7 @@ static ssize_t set_target_fps(struct kobject *kobj,
 				(target_fps-max_fps_drop))-frame_time_ns;
 			slow_thresh = high*max_frame;
 		}
-		pr_info("sched_penalty:fps=%lu, slow_thresh=%lu max_fps_drop=%d \n",
+		pr_info("sched_penalty:fps=%llu, slow_thresh=%llu max_fps_drop=%llu \n",
 		target_fps, slow_thresh, max_fps_drop);
 	}else if (target_fps ==0)
 	{

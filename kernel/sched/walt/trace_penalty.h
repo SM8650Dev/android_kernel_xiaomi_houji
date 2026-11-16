@@ -30,7 +30,7 @@ TRACE_EVENT(sched_penalty,
 		__entry->sleep_total	= sleep_total;
 	),
 
-	TP_printk("comm=%s yield_util=%lu sleep_total=%lu ",
+	TP_printk("comm=%s yield_util=%llu sleep_total=%llu ",
 		__entry->comm, __entry->yield_util, __entry->sleep_total)
 );
 
