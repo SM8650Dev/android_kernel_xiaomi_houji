@@ -172,7 +172,7 @@ static int __altmode_send_data(struct altmode_dev *amdev, void *data,
 	struct usbc_write_buffer_req_msg msg = { { 0 } };
 
 	if (len > sizeof(msg.buf)) {
-		pr_err("len %zu exceeds msg buf's size: %zu\n",
+		pr_err("len %zu exceeds msg buf's size: %d\n",
 				len, USBC_WRITE_BUFFER_SIZE);
 		return -EINVAL;
 	}
@@ -554,7 +554,7 @@ static int altmode_callback(void *priv, void *data, size_t len)
 		break;
 	case USBC_NOTIFY_IND:
 		if (len != sizeof(*notify_msg)) {
-			altmode_dbg("Expected length %u, got: %zu\n",
+			altmode_dbg("Expected length %lu, got: %zu\n",
 					sizeof(*notify_msg), len);
 			return -EINVAL;
 		}
