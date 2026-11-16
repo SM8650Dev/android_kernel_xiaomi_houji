@@ -1,0 +1,7 @@
+[
+  {
+    "repository": "MiCode/kernel_devicetree",
+    "target_path": "kernel/xiaomi/houji-devicetrees",
+    "branch": "shennong-u-oss"
+  }
+]
