@@ -13,6 +13,12 @@ Each compiler or diagnostic defect is committed separately by driver; the
 QRTR padding use-after-free, LED ID argument and MTD reason-enum corrections
 are separate fixes. The duplicated top-level DTS recipes are also removed.
 
+## System DLKM module configuration
+
+The houji fragment enables `CONFIG_WWAN=m` to provide `wwan.ko` for the
+system_dlkm load list. The WWAN core is already present in this release;
+it needs no imported driver or stock binary module.
+
 ## Reproduce from the Android tree root
 
 The matching official DTS checkout must be present at
