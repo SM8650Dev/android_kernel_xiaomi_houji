@@ -38,6 +38,20 @@ make -C "$kernel_src" O="$kernel_out" ARCH=arm64 LLVM=1 LLVM_IAS=1 \
 No unit tests are required for this bringup. The validation consists of the
 actual compiler, linker, modpost, module installation and device-tree tools.
 
+## Android product host-tool builds
+
+Lineage passes a glibc 2.17 sysroot through HOSTCFLAGS and HOSTLDFLAGS for
+this 6.1 kernel. resolve_btfids must pass its host CFLAGS as EXTRA_CFLAGS to
+libsubcmd, just as it does for libbpf. libsubcmd initializes its own CFLAGS
+and otherwise discards the sysroot inherited through the environment.
+
+Without that forwarding, a newer host can compile libsubcmd against
+/usr/include/stdlib.h and emit __isoc23_strtol/strtoul/strtoull references,
+then fail to link them against the older sysroot libc. Keep the headers and
+libraries on the same sysroot; no BTF disablement or libc symbol shim is
+needed. This affects the Android product build even when the standalone
+host build above succeeds against the native host libc.
+
 ## Observed results
 
 On the bringup server at /SSD/cm23.2:
