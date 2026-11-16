@@ -358,7 +358,7 @@ static long gh_vcpu_ioctl(struct file *filp,
 		ret = gh_vcpu_ioctl_run(vcpu);
 		break;
 	default:
-		pr_err("Invalid gunyah VCPU ioctl 0x%lx\n", cmd);
+		pr_err("Invalid gunyah VCPU ioctl 0x%x\n", cmd);
 		break;
 	}
 	return ret;
@@ -546,7 +546,7 @@ long gh_vm_configure(u16 auth_mech, u64 image_offset,
 				vm->mem_handle, image_offset,
 				image_size, dtb_offset, dtb_size);
 		if (ret) {
-			pr_err("VM_CONFIG failed for VM:%d %d\n",
+			pr_err("VM_CONFIG failed for VM:%d %ld\n",
 						vm->vmid, ret);
 			return ret;
 		}
@@ -561,7 +561,7 @@ long gh_vm_configure(u16 auth_mech, u64 image_offset,
 
 		ret = gh_rm_vm_auth_image(vm->vmid, 1, &entry);
 		if (ret) {
-			pr_err("VM_AUTH_IMAGE failed for VM:%d %d\n",
+			pr_err("VM_AUTH_IMAGE failed for VM:%d %ld\n",
 						vm->vmid, ret);
 			return ret;
 		}
@@ -574,18 +574,18 @@ long gh_vm_configure(u16 auth_mech, u64 image_offset,
 
 	ret = ghd_rm_vm_init(vm->vmid);
 	if (ret) {
-		pr_err("VM_INIT_IMAGE failed for VM:%d %d\n",
+		pr_err("VM_INIT_IMAGE failed for VM:%d %ld\n",
 						vm->vmid, ret);
 		return ret;
 	}
 
 	ret = gh_wait_for_vm_status(vm, GH_RM_VM_STATUS_READY);
 		if (ret < 0)
-			pr_err("wait for VM_STATUS_RESET interrupted %d\n", ret);
+			pr_err("wait for VM_STATUS_RESET interrupted %ld\n", ret);
 
 	ret = gh_rm_populate_hyp_res(vm->vmid, fw_name);
 	if (ret < 0) {
-		pr_err("Failed to populate resources %d\n", ret);
+		pr_err("Failed to populate resources %ld\n", ret);
 		return ret;
 	}
 
@@ -726,7 +726,7 @@ static long gh_dev_ioctl(struct file *filp,
 		ret = gh_dev_ioctl_create_vm(arg);
 		break;
 	default:
-		pr_err("Invalid gunyah dev ioctl 0x%lx\n", cmd);
+		pr_err("Invalid gunyah dev ioctl 0x%x\n", cmd);
 		break;
 	}
 
