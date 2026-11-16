@@ -383,7 +383,7 @@ static int qti_flash_led_strobe(struct qti_flash_led *led,
 			goto error;
 
 		if (snode && snode->off_time_ms) {
-			pr_debug("Off timer started with delay %d ms\n",
+			pr_debug("Off timer started with delay %llu ms\n",
 				snode->off_time_ms);
 			hrtimer_start(&snode->off_timer,
 					ms_to_ktime(snode->off_time_ms),
@@ -796,7 +796,7 @@ static void qti_flash_led_switch_brightness_set(
 
 	if (state) {
 		if (snode->on_time_ms) {
-			pr_debug("On timer started with delay %d ms\n",
+			pr_debug("On timer started with delay %llu ms\n",
 				snode->on_time_ms);
 			hrtimer_start(&snode->on_timer,
 					ms_to_ktime(snode->on_time_ms),
@@ -1174,7 +1174,7 @@ static ssize_t qti_flash_on_time_show(struct device *dev,
 
 	snode = container_of(led_cdev, struct flash_switch_data, cdev);
 
-	return scnprintf(buf, PAGE_SIZE, "%lu\n", snode->on_time_ms * 1000);
+	return scnprintf(buf, PAGE_SIZE, "%llu\n", snode->on_time_ms * 1000);
 }
 
 static ssize_t qti_flash_off_time_store(struct device *dev,
@@ -1205,7 +1205,7 @@ static ssize_t qti_flash_off_time_show(struct device *dev,
 
 	snode = container_of(led_cdev, struct flash_switch_data, cdev);
 
-	return scnprintf(buf, PAGE_SIZE, "%lu\n", snode->off_time_ms * 1000);
+	return scnprintf(buf, PAGE_SIZE, "%llu\n", snode->off_time_ms * 1000);
 }
 
 static struct device_attribute qti_flash_led_attrs[] = {
