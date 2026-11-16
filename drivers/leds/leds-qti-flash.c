@@ -768,7 +768,7 @@ static int qti_flash_switch_disable(struct flash_switch_data *snode)
 		rc = qti_flash_led_disable(&led->fnode[i]);
 		if (rc < 0) {
 			pr_err("Failed to disable LED%d\n",
-				&led->fnode[i].id);
+				led->fnode[i].id);
 			break;
 		}
 	}
