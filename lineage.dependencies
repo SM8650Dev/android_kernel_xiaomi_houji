@@ -23,5 +23,17 @@
     "repository": "MiCode/vendor_opensource_display-drivers",
     "target_path": "kernel/xiaomi/houji-modules/display",
     "branch": "shennong-u-oss"
+  },
+  {
+    "repository": "platform/vendor/qcom/opensource/securemsm-kernel",
+    "remote": "houji-clo",
+    "target_path": "kernel/xiaomi/houji-modules/securemsm-kernel",
+    "branch": "99e7a9ca5236209af5afadda64be30d472550c68"
+  },
+  {
+    "repository": "platform/vendor/opensource/dataipa",
+    "remote": "houji-clo",
+    "target_path": "kernel/xiaomi/houji-modules/dataipa",
+    "branch": "723906905cbf3e7a59ec8924e9d4bbe81e72097c"
   }
 ]
