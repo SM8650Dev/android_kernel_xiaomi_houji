@@ -146,11 +146,11 @@ static int fetch_and_populate_cdevs(char *config_buf, struct thermal_zone_device
 				buf1_offset += scnprintf(
 						buf_cdev_upper + buf1_offset,
 						buf_size - buf1_offset,
-						" %d", instance->upper);
+						" %lu", instance->upper);
 				buf2_offset += scnprintf(
 						buf_cdev_lower + buf2_offset,
 						buf_size - buf2_offset,
-						" %d", instance->lower);
+						" %lu", instance->lower);
 			} else {
 				buf_offset += scnprintf(
 						buf_cdev + buf_offset,
@@ -159,11 +159,11 @@ static int fetch_and_populate_cdevs(char *config_buf, struct thermal_zone_device
 				buf1_offset += scnprintf(
 						buf_cdev_upper + buf1_offset,
 						buf_size - buf1_offset,
-						"+%d", instance->upper);
+						"+%lu", instance->upper);
 				buf2_offset += scnprintf(
 						buf_cdev_lower + buf2_offset,
 						buf_size - buf2_offset,
-						"+%d", instance->lower);
+						"+%lu", instance->lower);
 			}
 		}
 
@@ -294,7 +294,7 @@ static ssize_t thermal_dbgfs_config_write(struct file *file,
 
 	tz = thermal_zone_get_zone_by_name((const char *)tzone_sensor_name);
 	if (IS_ERR(tz)) {
-		pr_err("No thermal zone for sensor:%s. err:%d\n",
+		pr_err("No thermal zone for sensor:%s. err:%ld\n",
 					tzone_sensor_name, PTR_ERR(tz));
 		return PTR_ERR(tz);
 	}
