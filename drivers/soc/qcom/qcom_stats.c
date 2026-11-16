@@ -187,7 +187,7 @@ bool has_system_slept(void)
 
 	for (i = 0; i < drv->config->num_records; i++) {
 		if (b_system_stats[i].count == a_system_stats[i].count) {
-			pr_warn("System %s has not entered sleep\n", a_system_stats[i].stat_type);
+			pr_warn("System %u has not entered sleep\n", a_system_stats[i].stat_type);
 			sleep_flag = false;
 		}
 	}
@@ -748,7 +748,7 @@ static void print_ddr_stats(struct seq_file *s, int *count,
 		name = (data->stat_type) & 0xFF;
 		*count = *count + 1;
 		seq_printf(s,
-		"LPM %d:\tName:0x%x\tcount:%u\tDuration (ticks):%ld (~%d%%)\n",
+		"LPM %d:\tName:0x%x\tcount:%u\tDuration (ticks):%llu (~%d%%)\n",
 			*count, name, data->count, data->accumulated, duration);
 	} else if (name == 0x1) {
 		cp_idx = data->stat_type & 0x1F;
@@ -758,7 +758,7 @@ static void print_ddr_stats(struct seq_file *s, int *count,
 			return;
 
 		seq_printf(s,
-		"Freq %dMhz:\tCP IDX:%u\tcount:%u\tDuration (ticks):%ld (~%d%%)\n",
+		"Freq %dMhz:\tCP IDX:%u\tcount:%u\tDuration (ticks):%llu (~%d%%)\n",
 			name, cp_idx, data->count, data->accumulated, duration);
 	}
 }
