@@ -60,7 +60,7 @@ static ssize_t flush_status_show(struct device *dev,
 
 	val = readl_relaxed(drvdata->base + TRACE_NOC_CTRL);
 	spin_unlock(&drvdata->spinlock);
-	return scnprintf(buf, PAGE_SIZE, "%x\n", BMVAL(val, 2, 2));
+	return scnprintf(buf, PAGE_SIZE, "%lx\n", BMVAL(val, 2, 2));
 }
 static DEVICE_ATTR_RO(flush_status);
 
