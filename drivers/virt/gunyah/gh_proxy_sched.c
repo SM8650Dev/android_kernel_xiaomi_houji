@@ -608,7 +608,7 @@ int gh_poll_vcpu_run(gh_vmid_t vmid)
 						resp.vcpu_state, resp.vcpu_suspend_state);
 			if (ret == GH_ERROR_OK) {
 				if (resp.vcpu_state > GH_VCPU_STATE_BLOCKED)
-					printk_deferred("Unknown VCPU STATE: state=%d VCPU=%u of VM=%d\n",
+					printk_deferred("Unknown VCPU STATE: state=%llu VCPU=%u of VM=%d\n",
 							resp.vcpu_state, vcpu_id, vmid);
 				break;
 			}
@@ -711,7 +711,7 @@ int gh_vcpu_run(gh_vmid_t vmid, unsigned int vcpu_id, uint64_t resume_data_0,
 
 			/* Unknown VCPU state. */
 			default:
-				pr_err("Unknown VCPU STATE: state=%d VCPU=%u of VM=%d state_data_0=0x%llx state_data_1=0x%llx state_data_2=0x%llx\n",
+				pr_err("Unknown VCPU STATE: state=%llu VCPU=%u of VM=%d state_data_0=0x%llx state_data_1=0x%llx state_data_2=0x%llx\n",
 					resp->vcpu_state, vcpu_id, vcpu->vm->id,
 					resp->state_data_0, resp->state_data_1, resp->state_data_2);
 				schedule();
