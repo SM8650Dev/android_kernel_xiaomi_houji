@@ -129,7 +129,7 @@ static int userspace_device_probe(struct platform_device *pdev)
 						&cdev_instances[idx],
 						&userspace_cdev_ops);
 		if (IS_ERR(cdev_instances[idx].cdev)) {
-			dev_err(dev, "Error registering cdev:%s err:%d\n",
+			dev_err(dev, "Error registering cdev:%s err:%ld\n",
 					cdev_instances[idx].cdev_name,
 					PTR_ERR(cdev_instances[idx].cdev));
 			cdev_instances[idx].cdev = NULL;
