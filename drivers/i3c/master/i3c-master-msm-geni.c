@@ -1137,7 +1137,7 @@ static void geni_i3c_perform_daa(struct geni_i3c_dev *gi3c)
 		list_for_each_entry(i3cboardinfo, &m->boardinfo.i3c, node) {
 			if (pid == i3cboardinfo->pid) {
 				I3C_LOG_DBG(gi3c->ipcl, false, gi3c->se.dev,
-				"PID 0x:%x matched with boardinfo\n", pid);
+				"PID 0x:%llx matched with boardinfo\n", pid);
 				break;
 			}
 		}
@@ -1157,12 +1157,12 @@ static void geni_i3c_perform_daa(struct geni_i3c_dev *gi3c)
 
 		if (ret < 0) {
 			I3C_LOG_DBG(gi3c->ipcl, false, gi3c->se.dev,
-			"error:%d during get_free_addr, pid:0x:%x, mid:0x%x\n"
+			"error:%d during get_free_addr, pid:0x:%llx, mid:0x%x\n"
 				, ret, pid, mid);
 			goto daa_err;
 		} else if (ret == init_dyn_addr) {
 			I3C_LOG_DBG(gi3c->ipcl, false, gi3c->se.dev,
-			"assign requested addr:0x%x for pid:0x:%x, mid:0x%x\n"
+			"assign requested addr:0x%x for pid:0x:%llx, mid:0x%x\n"
 				, ret, pid, mid);
 		} else if (init_dyn_addr) {
 			i3c_bus_for_each_i3cdev(&m->bus, i3cdev) {
@@ -1174,16 +1174,16 @@ static void geni_i3c_perform_daa(struct geni_i3c_dev *gi3c)
 			if (enum_slv) {
 				addr = i3cdev->info.dyn_addr;
 				I3C_LOG_DBG(gi3c->ipcl, false, gi3c->se.dev,
-					"assigning requested addr:0x%x for pid:0x:%x\n"
+					"assigning requested addr:0x%x for pid:0x:%llx\n"
 					, addr, pid);
 			} else {
 				I3C_LOG_DBG(gi3c->ipcl, false, gi3c->se.dev,
-				"new dev: assigning addr:0x%x for pid:x:%x\n"
+				"new dev: assigning addr:0x%x for pid:x:%llx\n"
 				, ret, pid);
 			}
 		} else {
 			I3C_LOG_DBG(gi3c->ipcl, false, gi3c->se.dev,
-				"assigning addr:0x%x for pid:x:%x\n", ret, pid);
+				"assigning addr:0x%x for pid:x:%llx\n", ret, pid);
 		}
 
 		if (!i3cboardinfo->init_dyn_addr)
@@ -1739,7 +1739,7 @@ static int geni_i3c_master_request_ibi(struct i3c_dev_desc *dev,
 	data->ibi_pool = i3c_generic_ibi_alloc_pool(dev, req);
 	if (IS_ERR(data->ibi_pool)) {
 		I3C_LOG_ERR(gi3c->ipcl, true, gi3c->se.dev,
-			"Error creating a generic IBI pool %d\n",
+			"Error creating a generic IBI pool %ld\n",
 			PTR_ERR(data->ibi_pool));
 		return PTR_ERR(data->ibi_pool);
 	}
@@ -1782,7 +1782,7 @@ static int geni_i3c_master_request_ibi(struct i3c_dev_desc *dev,
 	}
 
 	I3C_LOG_ERR(gi3c->ipcl, true, gi3c->se.dev,
-		"ibi.num_slots ran out %d: %d\n", i, gi3c->ibi.num_slots);
+		"ibi.num_slots ran out %lu: %d\n", i, gi3c->ibi.num_slots);
 
 	i3c_generic_ibi_free_pool(data->ibi_pool);
 	data->ibi_pool = NULL;
