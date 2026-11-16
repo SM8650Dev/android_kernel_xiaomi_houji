@@ -444,7 +444,7 @@ static void mtdoops_do_dump(struct kmsg_dumper *dumper,
 		cxt->pmsg_data.pmsg_size);
 
 	p_hdr = (struct pmsg_buffer_hdr *)pmsg_buffer_start;
-	pr_err("mtdoops_do_dump pmsg paddr = 0x%lx \n",
+	pr_err("mtdoops_do_dump pmsg vaddr = %p \n",
 			pmsg_buffer_start);
 
 	if(p_hdr->sig == 0x43474244) {
@@ -658,9 +658,9 @@ static int mtdoops_pmsg_probe(struct platform_device *pdev)
 
 #undef parse_u32
 
-	pr_info( "pares mtd_dt, mem_address =0x%x, mem_size =0x%x \n",
+	pr_info( "pares mtd_dt, mem_address =0x%llx, mem_size =0x%lx \n",
 			cxt->pmsg_data.mem_address, cxt->pmsg_data.mem_size);
-	pr_info( "pares mtd_dt, pmsg_size =0x%x,console-size =0x%x \n",
+	pr_info( "pares mtd_dt, pmsg_size =0x%lx,console-size =0x%lx \n",
 			cxt->pmsg_data.pmsg_size, cxt->pmsg_data.console_size);
 
 	return 0;
