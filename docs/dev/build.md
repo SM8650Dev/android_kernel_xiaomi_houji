@@ -143,3 +143,11 @@ ioctl UAPI；`smmu_proxy_uapi_header` 默认也指向核心生成头文件，需
 导出。`qti_ipa_kernel_headers` 使用核心生成头文件；ipanat 直接引用 `msm_ipa.h`，
 而 RMNET IPA ioctl 头文件依赖前两项，需完整导出这组 UAPI。
 这些链接保留外置驱动的原始 ioctl 和数据结构定义，不修改 dataipa 用户空间代码。
+
+
+## 用户空间音频 UAPI 导出
+
+`include/uapi/audio/` 补齐 primary-hal 显式引用的 `sound/audio_effects.h`、
+`sound/devdep_params.h` 和 `linux/msm_audio.h`，通过标准 `headers_install`
+导出至 Lineage 已声明的 `usr/include/audio` 路径。
+固定来源和原始文件 SHA-256 见 [音频 UAPI 来源](audio-uapi.md)。
