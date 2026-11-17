@@ -116,3 +116,16 @@ Android U and based on `KERNEL.PLATFORM.3.0.r1-03200-kernel.0-1`.
 This is driver source, separate from the display device-tree repository.
 It still needs external MMRM, hardware-fence and secure-display dependencies
 before the functional display module can be integrated.
+
+
+## 用户空间显示 UAPI 导出
+
+`include/uapi/display/` 的头文件链接到同一 MiCode 分支的外置显示驱动
+`kernel/xiaomi/houji-modules/display/include/uapi/display/`，由标准
+`headers_install` 一并处理。实际定义仍只有外置仓库这一份；相关 repo 依赖已在
+`lineage.dependencies` 声明。
+
+Lineage 的 `qti_display_kernel_headers` 默认转发核心 `generated_kernel_includes`，
+而显示驱动自身的同名模块位于独立 namespace，不会被显示 HAL 自动选中。
+这里通过标准 UAPI 导出补齐 `display/media/mmm_color_fmt.h` 和同组 DRM、HDCP、
+rotator 头文件，适用于原厂 Image 和源码 Image 两种构建模式，不需要修改 HAL。
