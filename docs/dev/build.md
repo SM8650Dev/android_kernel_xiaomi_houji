@@ -133,3 +133,13 @@ rotator 头文件，适用于原厂 Image 和源码 Image 两种构建模式，�
 SMMU proxy 的 `linux/qti-smmu-proxy.h` 同样从已声明依赖的 securemsm-kernel
 外置仓库链接并通过 `headers_install` 导出。gralloc 的 secure-buffer 路径依赖该
 ioctl UAPI；`smmu_proxy_uapi_header` 默认也指向核心生成头文件，需包含这一导出。
+
+
+## 用户空间 IPA UAPI 导出
+
+`include/uapi/linux/` 的 `msm_ipa.h`、`ipa_qmi_service_v01.h` 和
+`rmnet_ipa_fd_ioctl.h` 链接到已声明依赖的 dataipa 仓库
+`drivers/platform/msm/include/uapi/linux/`，统一通过标准 `headers_install`
+导出。`qti_ipa_kernel_headers` 使用核心生成头文件；ipanat 直接引用 `msm_ipa.h`，
+而 RMNET IPA ioctl 头文件依赖前两项，需完整导出这组 UAPI。
+这些链接保留外置驱动的原始 ioctl 和数据结构定义，不修改 dataipa 用户空间代码。
