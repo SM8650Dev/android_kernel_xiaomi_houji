@@ -129,3 +129,7 @@ Lineage 的 `qti_display_kernel_headers` 默认转发核心 `generated_kernel_in
 而显示驱动自身的同名模块位于独立 namespace，不会被显示 HAL 自动选中。
 这里通过标准 UAPI 导出补齐 `display/media/mmm_color_fmt.h` 和同组 DRM、HDCP、
 rotator 头文件，适用于原厂 Image 和源码 Image 两种构建模式，不需要修改 HAL。
+
+SMMU proxy 的 `linux/qti-smmu-proxy.h` 同样从已声明依赖的 securemsm-kernel
+外置仓库链接并通过 `headers_install` 导出。gralloc 的 secure-buffer 路径依赖该
+ioctl UAPI；`smmu_proxy_uapi_header` 默认也指向核心生成头文件，需包含这一导出。
