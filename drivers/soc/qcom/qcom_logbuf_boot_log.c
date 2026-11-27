@@ -18,6 +18,7 @@ static unsigned int boot_log_buf_size;
 static unsigned int boot_log_buf_left;
 static struct kmsg_dump_iter iter;
 static struct task_struct *dump_thread;
+static struct md_region boot_log_region;
 
 int dump_thread_func(void *arg)
 {
@@ -42,7 +43,7 @@ static int boot_log_init(void)
 	void *start;
 	int ret = 0;
 	unsigned int size = BOOT_LOG_SIZE;
-	struct md_region md_entry;
+	struct md_region *md_entry = &boot_log_region;
 
 	start = kzalloc(size, GFP_KERNEL);
 	if (!start) {
@@ -50,11 +51,11 @@ static int boot_log_init(void)
 		goto out;
 	}
 
-	strscpy(md_entry.name, "KBOOT_LOG", sizeof(md_entry.name));
-	md_entry.virt_addr = (uintptr_t)start;
-	md_entry.phys_addr = virt_to_phys(start);
-	md_entry.size = size;
-	ret = msm_minidump_add_region(&md_entry);
+	strscpy(md_entry->name, "KBOOT_LOG", sizeof(md_entry->name));
+	md_entry->virt_addr = (uintptr_t)start;
+	md_entry->phys_addr = virt_to_phys(start);
+	md_entry->size = size;
+	ret = msm_minidump_add_region(md_entry);
 	if (ret < 0) {
 		pr_err("Failed to add boot_log entry in minidump table\n");
 		kfree(start);
@@ -71,6 +72,7 @@ static int boot_log_init(void)
 	 * is visible to other CPU's
 	 */
 	smp_mb();
+	ret = 0;
 
 out:
 	return ret;
@@ -83,6 +85,8 @@ static int __init boot_log_dump_init(void)
 	size_t text_len;
 
 	ret = boot_log_init();
+	if (ret)
+		return ret;
 
 	kmsg_dump_rewind(&iter);
 	dumped_line = iter.next_seq;
@@ -91,6 +95,14 @@ static int __init boot_log_dump_init(void)
 	boot_log_buf_left -= text_len;
 	iter.cur_seq = dumped_line;
 	dump_thread = kthread_run(dump_thread_func, NULL, "dump_thread");
+	if (IS_ERR(dump_thread)) {
+		ret = PTR_ERR(dump_thread);
+		dump_thread = NULL;
+		if (!msm_minidump_remove_region(&boot_log_region)) {
+			kfree(boot_log_buf);
+			boot_log_buf = NULL;
+		}
+	}
 
 	return ret;
 }
@@ -100,7 +112,8 @@ void boot_log_dump_remove(void)
 {
 	if (dump_thread)
 		kthread_stop(dump_thread);
-	kfree(boot_log_buf);
+	if (boot_log_buf && !msm_minidump_remove_region(&boot_log_region))
+		kfree(boot_log_buf);
 }
 module_exit(boot_log_dump_remove);
 
