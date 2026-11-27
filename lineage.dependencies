@@ -90,7 +90,7 @@
     "branch": "lineage-23.2"
   },
   {
-    "repository": "SM8650Dev/android_kernel_xiaomi_houji-oneplus-sm8650",
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-multimedia",
     "remote": "houji-github",
     "target_path": "kernel/xiaomi/houji-modules/oneplus-sm8650",
     "branch": "lineage-23.2"
