@@ -1,80 +1,110 @@
 [
   {
-    "repository": "MiCode/kernel_devicetree",
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-devicetrees",
+    "remote": "houji-github",
     "target_path": "kernel/xiaomi/houji-devicetrees",
-    "branch": "shennong-u-oss"
+    "branch": "lineage-23.2"
   },
   {
-    "repository": "MiCode/vendor_qcom_opensource_camera-kernel",
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-camera",
+    "remote": "houji-github",
     "target_path": "kernel/xiaomi/houji-modules/camera",
-    "branch": "shennong-u-oss"
+    "branch": "lineage-23.2"
   },
   {
-    "repository": "MiCode/vendor_qcom_opensource_wlan",
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-camera-devicetree",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/camera-devicetree",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-display",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/display",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-wlan",
+    "remote": "houji-github",
     "target_path": "kernel/xiaomi/houji-modules/wlan",
-    "branch": "shennong-u-oss"
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-securemsm-kernel",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/securemsm-kernel",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-dataipa",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/dataipa",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-datarmnet",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/datarmnet",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-datarmnet-ext",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/datarmnet-ext",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-mm-drivers",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/mm-drivers",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-mmrm-driver",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/mmrm-driver",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-synx-kernel",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/synx-kernel",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-dsp-kernel",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/dsp-kernel",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-bt-kernel",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/bt-kernel",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-touch",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/houji-touch",
+    "branch": "lineage-23.2"
+  },
+  {
+    "repository": "SM8650Dev/android_kernel_xiaomi_houji-oneplus-sm8650",
+    "remote": "houji-github",
+    "target_path": "kernel/xiaomi/houji-modules/oneplus-sm8650",
+    "branch": "lineage-23.2"
   },
   {
     "repository": "MiCode/vendor_qcom_proprietary_display-devicetree",
+    "remote": "houji-github",
     "target_path": "kernel/xiaomi/houji-modules/display-devicetree",
-    "branch": "shennong-u-oss"
+    "branch": "fade75a43279e91a83060a68612d872ab2dcc086"
   },
   {
-    "repository": "MiCode/vendor_opensource_display-drivers",
-    "target_path": "kernel/xiaomi/houji-modules/display",
-    "branch": "shennong-u-oss"
-  },
-  {
-    "repository": "platform/vendor/qcom/opensource/securemsm-kernel",
+    "repository": "platform/vendor/qcom/opensource/spu-kernel",
     "remote": "houji-clo",
-    "target_path": "kernel/xiaomi/houji-modules/securemsm-kernel",
-    "branch": "99e7a9ca5236209af5afadda64be30d472550c68"
-  },
-  {
-    "repository": "platform/vendor/opensource/dataipa",
-    "remote": "houji-clo",
-    "target_path": "kernel/xiaomi/houji-modules/dataipa",
-    "branch": "723906905cbf3e7a59ec8924e9d4bbe81e72097c"
-  },
-  {
-    "repository": "platform/vendor/qcom/opensource/datarmnet",
-    "remote": "houji-clo",
-    "target_path": "kernel/xiaomi/houji-modules/datarmnet",
-    "branch": "0f7747af0bd8e8f0603c726ffa0e330f927e1602"
-  },
-  {
-    "repository": "platform/vendor/qcom/opensource/datarmnet-ext",
-    "remote": "houji-clo",
-    "target_path": "kernel/xiaomi/houji-modules/datarmnet-ext",
-    "branch": "24380abaae2422e1cf0b2b22a85263459f2fedc3"
-  },
-  {
-    "repository": "la_platform_vendor_opensource_mm-drivers",
-    "remote": "houji-clo-mirror",
-    "target_path": "kernel/xiaomi/houji-modules/mm-drivers",
-    "branch": "129a3797e8dd1163aa49809b26355c8bb0573584"
-  },
-  {
-    "repository": "la_platform_vendor_opensource_mmrm-driver",
-    "remote": "houji-clo-mirror",
-    "target_path": "kernel/xiaomi/houji-modules/mmrm-driver",
-    "branch": "0ecad902add56e93e083c1a4acab37b05b14c508"
-  },
-  {
-    "repository": "la_platform_vendor_opensource_synx-kernel",
-    "remote": "houji-clo-mirror",
-    "target_path": "kernel/xiaomi/houji-modules/synx-kernel",
-    "branch": "d5bed2898aa514562a4fb6a5a0ae2732833a54f9"
-  },
-  {
-    "repository": "la_platform_vendor_qcom_opensource_dsp-kernel",
-    "remote": "houji-clo-mirror",
-    "target_path": "kernel/xiaomi/houji-modules/dsp-kernel",
-    "branch": "a976ff28ccb56d1b227a857a7cf5f92cd60985f2"
-  },
-  {
-    "repository": "MiCode/vendor_qcom_proprietary_camera-devicetree",
-    "target_path": "kernel/xiaomi/houji-modules/camera-devicetree",
-    "branch": "c07bd5b2c17c003829b8b04d776ee28d66bbdad1"
+    "target_path": "kernel/xiaomi/houji-modules/spu-kernel",
+    "branch": "8209e34e04c393339b8ca49f8f9b9feae3f0908d"
   }
 ]
