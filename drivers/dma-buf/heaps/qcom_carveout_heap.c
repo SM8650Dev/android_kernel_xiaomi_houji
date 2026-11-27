@@ -292,6 +292,17 @@ static int carveout_heap_sglist_zero(struct scatterlist *sgl, unsigned int nents
 static int carveout_pages_zero(struct page *page, size_t size, pgprot_t prot)
 {
 	struct scatterlist sg;
+	void __iomem *addr;
+
+	/* Reserved no-map carveouts do not have valid normal-memory PFNs. */
+	if (!pfn_valid(page_to_pfn(page))) {
+		addr = ioremap_wc(page_to_phys(page), size);
+		if (!addr)
+			return -ENOMEM;
+		memset_io(addr, 0, size);
+		iounmap(addr);
+		return 0;
+	}
 
 	sg_init_table(&sg, 1);
 	sg_set_page(&sg, page, size, 0);
